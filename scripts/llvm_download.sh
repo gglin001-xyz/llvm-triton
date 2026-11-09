@@ -39,9 +39,11 @@ git sparse-checkout list
 # https://github.com/triton-lang/triton/tree/main
 LLVM_SHA="${LLVM_SHA:-b010a18d2b648cab83c83967ff26b8fde11acdc6}"
 
-git fetch --depth 1 origin $LLVM_SHA
+if ! git cat-file -e "$LLVM_SHA^{commit}" 2>/dev/null; then
+  git fetch --depth 1 origin "$LLVM_SHA"
+fi
 # git checkout -b sync $LLVM_SHA
-git checkout $LLVM_SHA
+git checkout "$LLVM_SHA"
 
 popd
 
