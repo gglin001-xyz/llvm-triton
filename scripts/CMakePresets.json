@@ -25,13 +25,14 @@
         "LLVM_INCLUDE_TESTS": false,
         "LLVM_INCLUDE_TOOLS": true,
         "LLVM_INCLUDE_UTILS": true,
+        "LLVM_BUILD_UTILS": true,
         "LLVM_INSTALL_UTILS": true,
         "LLVM_INCLUDE_RUNTIMES": false,
         "LLVM_INCLUDE_BENCHMARKS": false,
         "LLVM_APPEND_VC_REV": false,
         "LLVM_ENABLE_IDE": true,
         "LLVM_TARGETS_TO_BUILD": "host;NVPTX;AMDGPU",
-        "LLVM_ENABLE_PROJECTS": "mlir;lld",
+        "LLVM_ENABLE_PROJECTS": "mlir;lld;clang",
         "MLIR_INCLUDE_TESTS": false,
         "MLIR_ENABLE_BINDINGS_PYTHON": false
       }

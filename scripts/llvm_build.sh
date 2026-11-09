@@ -1,7 +1,8 @@
 #!/bin/bash
 
-rm -f $PWD/llvm-project/llvm/CMakePresets.json
-ln -s $PWD/scripts/CMakePresets.json $PWD/llvm-project/llvm/CMakePresets.json
+set -euo pipefail
+
+ln -sfn "$PWD/scripts/CMakePresets.json" "$PWD/llvm-project/llvm/CMakeUserPresets.json"
 
 pushd llvm-project
 

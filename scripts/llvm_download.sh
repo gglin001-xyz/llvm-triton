@@ -1,17 +1,21 @@
 #!/bin/bash
 
+set -euo pipefail
+
 mkdir -p llvm-project && pushd llvm-project
 
 git init
 
-git remote add origin git@github.com:llvm/llvm-project.git
-# git remote add origin https://gitcode.com/GitHub_Trending/ll/llvm-project.git
-# git remote add origin /repo/llvm-project
+if ! git remote get-url origin >/dev/null 2>&1; then
+  git remote add origin git@github.com:llvm/llvm-project.git
+  # git remote add origin https://gitcode.com/GitHub_Trending/ll/llvm-project.git
+  # git remote add origin /repo/llvm-project
+fi
 
 ######
 
 git sparse-checkout set --no-cone \
-  /cmake /llvm /mlir /lld /libunwind \
+  /cmake /llvm /mlir /lld /libunwind /libc /clang \
   '!/llvm/test' '!/llvm/unittests' '!/llvm/docs' \
   '!/mlir/test' '!/mlir/unittests' '!/mlir/docs' \
   '!/lld/test' \
@@ -33,7 +37,7 @@ git sparse-checkout list
 ######
 
 # https://github.com/triton-lang/triton/tree/main
-LLVM_SHA="87717bf9f81f7b29466c5d9a30a3453bdfc93941"
+LLVM_SHA="${LLVM_SHA:-b010a18d2b648cab83c83967ff26b8fde11acdc6}"
 
 git fetch --depth 1 origin $LLVM_SHA
 # git checkout -b sync $LLVM_SHA
